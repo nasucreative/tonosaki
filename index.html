@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="ja" data-size="m">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Nail Academy du Marche 学習サイト</title>
+<style>
+:root{
+ --bg:#FCF7F4;--paper:#FFFFFF;--blush:#F9E9EB;--blush2:#F1D4D9;--beige:#F3EADF;--beige2:#E7D8C6;
+ --rose:#B05A73;--rose-d:#8E4259;--gold:#A3804F;--ink:#3A2B2D;--muted:#75655F;--line:#ECDDD4;
+ --ok:#4F8A6B;--ok-bg:#E8F3EC;--ng:#B54A4A;--ng-bg:#FBEAEA;
+ --serif:"Hiragino Mincho ProN","Yu Mincho","YuMincho","BIZ UDPMincho","Noto Serif JP",serif;
+ --sans:"Hiragino Kaku Gothic ProN","Hiragino Sans","BIZ UDPGothic","Yu Gothic UI","Yu Gothic","Meiryo",sans-serif;
+ --r:18px;--shadow:0 2px 10px rgba(120,70,70,.07),0 1px 2px rgba(120,70,70,.05);
+}
+html{font-size:112.5%;-webkit-text-size-adjust:100%}
+html[data-size="l"]{font-size:131%}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.9;letter-spacing:.02em;overflow-x:hidden}
+img,svg{max-width:100%}
+a{color:var(--rose-d)}
+button{font:inherit;color:inherit}
+.wrap{max-width:780px;margin:0 auto;padding:0 16px 120px}
+
+/* ---- top bar ---- */
+.bar{position:sticky;top:0;z-index:20;background:rgba(252,247,244,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.bar-in{max-width:780px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;gap:10px}
+.logo{display:flex;flex-direction:column;line-height:1.15;text-decoration:none;color:var(--ink);min-width:0;flex:1}
+.logo b{font-family:var(--serif);font-style:italic;font-weight:600;color:var(--gold);font-size:1.02rem;letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logo span{font-size:.68rem;color:var(--muted);letter-spacing:.08em}
+.sizebtn{flex:none;border:1px solid var(--beige2);background:var(--paper);border-radius:999px;padding:6px 12px;font-size:.78rem;cursor:pointer;min-height:40px}
+.sizebtn[aria-pressed="true"]{background:var(--rose);border-color:var(--rose);color:#fff}
+
+/* ---- sample ribbon ---- */
+.sample{margin:14px 0 0;padding:10px 14px;border-radius:12px;background:var(--beige);color:#6B5536;font-size:.8rem;line-height:1.7;border:1px solid var(--beige2)}
+.sample b{color:var(--rose-d)}
+
+/* ---- hero ---- */
+.hero{margin-top:16px;border-radius:24px;padding:30px 20px 26px;text-align:center;position:relative;overflow:hidden;
+ background:radial-gradient(120% 90% at 0% 0%,#FBE3E6 0%,rgba(251,227,230,0) 60%),radial-gradient(120% 100% at 100% 100%,#F1E3D1 0%,rgba(241,227,209,0) 60%),var(--paper);
+ box-shadow:var(--shadow);border:1px solid var(--line)}
+.orn{display:block;margin:0 auto;width:150px;height:22px;color:var(--gold)}
+.hero h1{margin:10px 0 2px;font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.75rem;line-height:1.25;color:var(--ink);letter-spacing:.02em}
+.hero .kana{font-size:.75rem;color:var(--muted);letter-spacing:.2em}
+.hero .sub{display:inline-block;margin-top:12px;padding:4px 14px;border-radius:999px;background:var(--blush);color:var(--rose-d);font-size:.85rem;font-weight:700}
+.hero p{margin:14px auto 0;max-width:30em;font-size:.95rem}
+
+.guide{margin-top:16px;border-radius:var(--r);background:var(--rose);color:#fff;padding:18px 18px 16px;display:flex;gap:14px;align-items:center;box-shadow:var(--shadow)}
+.guide .gi{flex:none;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center}
+.guide b{display:block;font-size:1.15rem;line-height:1.5}
+.guide span{font-size:.85rem;opacity:.95;line-height:1.6;display:block}
+
+.prog{margin-top:16px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;box-shadow:var(--shadow)}
+.prog-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.prog-top b{font-family:var(--serif);font-size:1rem}
+.prog-top span{font-size:.85rem;color:var(--muted)}
+.meter{margin-top:10px;height:12px;border-radius:999px;background:var(--blush);overflow:hidden}
+.meter i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#D99AAA,var(--rose));transition:width .4s}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:60px;padding:12px 18px;border-radius:16px;border:0;cursor:pointer;font-size:1.05rem;font-weight:700;text-decoration:none;line-height:1.4;text-align:center}
+.btn-main{background:var(--rose);color:#fff;box-shadow:0 4px 12px rgba(176,90,115,.28)}
+.btn-main:active{background:var(--rose-d)}
+.btn-sub{background:var(--paper);color:var(--rose-d);border:1.5px solid var(--blush2)}
+.btn+.btn{margin-top:10px}
+.prog .btn{margin-top:14px}
+
+.sec-h{margin:30px 2px 12px;font-family:var(--serif);font-size:1.15rem;font-weight:600;display:flex;align-items:center;gap:10px}
+.sec-h:after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* ---- chapter list ---- */
+.toc{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.toc a{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;padding:16px;border-radius:var(--r);background:var(--paper);border:1px solid var(--line);text-decoration:none;color:var(--ink);box-shadow:var(--shadow);min-height:84px}
+.toc a:active{background:var(--blush)}
+.ic{width:52px;height:52px;border-radius:50%;background:var(--blush);color:var(--rose);display:grid;place-items:center;flex:none}
+.ic svg{width:26px;height:26px}
+.toc .no{font-family:var(--serif);font-size:.75rem;color:var(--gold);letter-spacing:.12em;display:block;line-height:1.3}
+.toc .tt{font-weight:700;font-size:1rem;line-height:1.5;display:block}
+.toc .sh{font-size:.8rem;color:var(--muted);line-height:1.55;display:block;margin-top:2px}
+.st{display:inline-block;margin-left:10px;vertical-align:1px;letter-spacing:.04em;font-family:var(--sans);line-height:1.6;font-size:.7rem;font-weight:700;padding:0 10px;border-radius:999px;background:var(--beige);color:#7A6240;white-space:nowrap}
+.done .st{background:var(--ok-bg);color:var(--ok)}
+.done .ic{background:var(--ok-bg);color:var(--ok)}
+.next a{border:2px solid var(--rose)}
+.next .st{background:var(--rose);color:#fff}
+
+/* ---- chapter page ---- */
+.crumb{margin:14px 2px 0;font-size:.8rem;color:var(--muted)}
+.crumb a{color:var(--muted)}
+.ch-head{margin-top:10px;padding:24px 20px;border-radius:24px;background:linear-gradient(160deg,#FBE8EB 0%,#F6EDE2 100%);border:1px solid var(--line);position:relative;overflow:hidden}
+.ch-head .ic{background:#fff;width:58px;height:58px}
+.ch-head .no{font-family:var(--serif);color:var(--gold);letter-spacing:.2em;font-size:.82rem;margin-top:12px;display:block}
+.ch-head h1{margin:4px 0 4px;font-family:var(--serif);font-size:1.5rem;line-height:1.45;font-weight:600}
+.ch-head p{margin:0;font-size:.9rem;color:var(--muted)}
+.dots{display:flex;gap:6px;margin-top:16px;flex-wrap:wrap}
+.dots a{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:.72rem;text-decoration:none;background:#fff;color:var(--muted);border:1px solid var(--line)}
+.dots a.d{background:var(--ok-bg);color:var(--ok);border-color:#CFE3D6}
+.dots a.c{background:var(--rose);color:#fff;border-color:var(--rose)}
+
+.blk{margin-top:22px}
+.lead{font-size:1.06rem;line-height:1.95;margin:22px 2px 0}
+.p{margin:16px 2px 0}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow)}
+.h3{margin:0 0 10px;font-family:var(--serif);font-size:1.08rem;font-weight:600;line-height:1.5;display:flex;gap:8px;align-items:center}
+.h3 .mk{width:8px;height:8px;border-radius:50%;background:var(--rose);flex:none}
+
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;gap:14px}
+.steps li{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start}
+.steps li:before{counter-increment:s;content:counter(s);width:40px;height:40px;border-radius:50%;background:var(--rose);color:#fff;display:grid;place-items:center;font-weight:700;font-family:var(--serif)}
+.steps b{display:block;line-height:1.55;padding-top:6px}
+.steps span{display:block;font-size:.9rem;color:var(--muted);line-height:1.7}
+
+.flow{list-style:none;margin:0;padding:0;counter-reset:f}
+.flow li{position:relative;display:grid;grid-template-columns:40px 1fr;gap:12px;padding-bottom:18px}
+.flow li:before{counter-increment:f;content:counter(f);width:40px;height:40px;border-radius:50%;background:#fff;border:2px solid var(--rose);color:var(--rose);display:grid;place-items:center;font-weight:700;z-index:1}
+.flow li:not(:last-child):after{content:"";position:absolute;left:19px;top:42px;bottom:2px;width:2px;background:var(--blush2)}
+.flow b{display:block;line-height:1.55;padding-top:6px}
+.flow span{display:block;font-size:.9rem;color:var(--muted);line-height:1.7}
+.note{margin:12px 0 0;font-size:.8rem;color:var(--muted);line-height:1.7}
+
+.cards{display:grid;gap:12px}
+.mini{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:var(--shadow);border-left:4px solid var(--blush2)}
+.mini b{font-size:1.02rem;line-height:1.5}
+.mini em{font-style:normal;font-size:.78rem;color:var(--gold);margin-left:8px;letter-spacing:.06em}
+.mini p{margin:4px 0 0;font-size:.9rem;color:var(--ink);line-height:1.75}
+
+.list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.list li{display:grid;grid-template-columns:24px 1fr;gap:8px;line-height:1.7}
+.list li:before{content:"";width:18px;height:18px;margin-top:6px;border-radius:50%;background:var(--blush) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' fill='none' stroke='%23B05A73' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+
+.point{background:var(--blush);border-radius:var(--r);padding:18px;border:1px solid var(--blush2)}
+.point .h3{color:var(--rose-d)}
+.point ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.point li{position:relative;padding-left:22px;line-height:1.75}
+.point li:before{content:"✦";position:absolute;left:0;top:0;color:var(--rose);font-size:.85rem}
+
+.quote{text-align:center;padding:22px 16px;margin-top:22px}
+.quote q{display:block;font-family:var(--serif);font-size:1.15rem;line-height:1.9;quotes:none;color:var(--ink)}
+.quote q span{display:block}
+.quote small{display:block;margin-top:8px;color:var(--gold);font-size:.8rem;letter-spacing:.1em}
+.quote .orn{width:120px}
+
+.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:.9rem}
+.tbl th{background:var(--beige);color:#6B5536;text-align:left;padding:10px 12px;font-weight:700}
+.tbl th:first-child{border-radius:10px 0 0 10px}.tbl th:last-child{border-radius:0 10px 10px 0}
+.tbl td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.7}
+.tbl td:first-child{font-weight:700;color:var(--rose-d)}
+@media (max-width:600px){
+ .tbl thead{display:none}
+ .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+ .tbl tr{padding:12px 0;border-bottom:1px solid var(--line)}
+ .tbl td{border:0;padding:2px 0}
+ .tbl td:first-child{font-size:1rem;margin-bottom:4px}
+ .tbl td:not(:first-child):before{content:attr(data-l);display:inline-block;font-size:.72rem;color:#7A6240;background:var(--beige);border-radius:6px;padding:0 8px;margin-right:8px;line-height:1.8}
+}
+.info{display:grid;gap:0;margin:0}
+.info div{display:grid;grid-template-columns:7.5em 1fr;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.info div:last-child{border-bottom:0}
+.info dt{font-size:.82rem;color:var(--gold);font-weight:700;padding-top:2px}
+.info dd{margin:0;line-height:1.7}
+@media (max-width:420px){.info div{grid-template-columns:1fr;gap:0}}
+
+.prof{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+.mono{width:76px;height:76px;border-radius:50%;background:linear-gradient(145deg,#F6DCE1,#EFE1CF);display:grid;place-items:center;font-family:var(--serif);font-style:italic;color:var(--rose-d);font-size:1.5rem;border:2px solid #fff;box-shadow:var(--shadow)}
+.prof .rl{font-size:.75rem;color:var(--gold);letter-spacing:.15em}
+.prof .nm{font-family:var(--serif);font-size:1.35rem;line-height:1.3}
+.prof .nm small{font-size:.75rem;color:var(--muted);margin-left:6px;font-family:var(--sans)}
+.prof ul{grid-column:1/-1;margin:4px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+.prof li{font-size:.9rem;padding:8px 12px;background:var(--bg);border-radius:10px;line-height:1.6}
+
+.todo{border:2px dashed #D9B9A2;background:repeating-linear-gradient(135deg,#FFFCF8,#FFFCF8 12px,#FDF5EE 12px,#FDF5EE 24px);border-radius:var(--r);padding:18px}
+.todo .tag{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;color:#8A6A44;background:#F3E3CF;border-radius:999px;padding:3px 12px;letter-spacing:.05em}
+.todo .h3{margin-top:10px}
+.todo ul{margin:0;padding-left:1.2em;line-height:1.8}
+.todo .hint{margin:10px 0 0;font-size:.82rem;color:#7A6240;line-height:1.7}
+
+.fig{display:grid;gap:14px}
+@media (min-width:640px){.fig{grid-template-columns:1fr 1fr}}
+.fig figure{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:12px 12px 8px;box-shadow:var(--shadow)}
+.fig figcaption{text-align:center;font-size:.8rem;color:var(--muted);margin-top:4px}
+.fig svg{display:block;width:100%;height:auto}
+.fig-cap{grid-column:1/-1;text-align:center;font-size:.78rem;color:var(--muted);margin:0}
+
+/* quiz */
+.qz{display:grid;gap:14px}
+.q{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+.q .qn{font-family:var(--serif);color:var(--gold);font-size:.8rem;letter-spacing:.15em}
+.q .qt{font-weight:700;line-height:1.65;margin:2px 0 12px}
+.opt{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;margin-top:8px;padding:10px 14px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg);cursor:pointer;text-align:left;font-size:1rem;line-height:1.5}
+.opt .k{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid var(--beige2);font-weight:700;color:var(--gold)}
+.opt.ok{border-color:var(--ok);background:var(--ok-bg)}
+.opt.ok .k{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.ng{border-color:var(--ng);background:var(--ng-bg)}
+.opt.ng .k{background:var(--ng);color:#fff;border-color:var(--ng)}
+.opt[disabled]{cursor:default}
+.exp{display:none;margin-top:12px;padding:12px 14px;border-radius:12px;background:var(--beige);font-size:.92rem;line-height:1.75}
+.exp b{display:block;font-size:1rem}
+.q.answered .exp{display:block}
+.score{text-align:center;padding:18px;border-radius:var(--r);background:linear-gradient(160deg,#FBE8EB,#F6EDE2);display:none}
+.score.show{display:block}
+.score b{font-family:var(--serif);font-size:1.6rem;color:var(--rose-d)}
+
+/* tracker */
+.trk label{display:block;font-size:.85rem;font-weight:700;margin:14px 0 6px}
+.trk input[type=date],.trk select,.trk textarea,.ask input,.ask select,.ask textarea{width:100%;font:inherit;font-size:1rem;padding:12px 14px;border:1.5px solid var(--beige2);border-radius:12px;background:#fff;color:var(--ink);min-height:52px}
+.trk textarea,.ask textarea{min-height:96px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--beige2);background:#fff;border-radius:999px;padding:8px 16px;min-height:46px;cursor:pointer;font-size:.95rem}
+.chip[aria-pressed="true"]{background:var(--rose);border-color:var(--rose);color:#fff}
+.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.sum div{background:var(--blush);border-radius:14px;padding:10px 6px;text-align:center}
+.sum b{display:block;font-family:var(--serif);font-size:1.35rem;color:var(--rose-d);line-height:1.3}
+.sum span{font-size:.72rem;color:var(--muted);white-space:nowrap;display:block;line-height:1.5}
+.logs{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px}
+.logs li{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.logs .dt{font-family:var(--serif);font-size:.9rem;color:var(--gold);text-align:center;line-height:1.2;min-width:3em}
+.logs .dt small{display:block;font-size:.68rem;color:var(--muted)}
+.logs .tx b{display:block;font-size:.95rem;line-height:1.5}
+.logs .tx span{font-size:.82rem;color:var(--muted);line-height:1.5;display:block;word-break:break-all}
+.logs .chk{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--beige2);background:#fff;cursor:pointer;display:grid;place-items:center;color:var(--beige2)}
+.logs .chk[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:#fff}
+.logs .del{background:none;border:0;color:var(--muted);font-size:.75rem;cursor:pointer;grid-column:2/4;justify-self:end;padding:0}
+.empty{margin:14px 0 0;padding:14px;border-radius:12px;background:var(--bg);font-size:.88rem;color:var(--muted);text-align:center}
+
+/* faq */
+.faq{display:grid;gap:10px}
+.faq details{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+.faq summary{list-style:none;cursor:pointer;padding:16px 48px 16px 16px;position:relative;font-weight:700;line-height:1.6;min-height:56px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:before{content:"Q";color:var(--rose);font-family:var(--serif);margin-right:8px}
+.faq summary:after{content:"＋";position:absolute;right:16px;top:14px;color:var(--rose);font-size:1.1rem}
+.faq details[open] summary:after{content:"－"}
+.faq .a{padding:0 16px 16px 16px;line-height:1.8}
+.faq .a:before{content:"A";color:var(--gold);font-family:var(--serif);margin-right:8px;font-weight:700}
+
+.src{margin-top:26px;font-size:.78rem;color:var(--muted)}
+.src summary{cursor:pointer;padding:8px 0;min-height:40px}
+.src ul{margin:4px 0 0;padding-left:1.2em;line-height:1.7}
+.src a{word-break:break-all}
+
+.course{border:1.5px solid var(--blush2)}
+.course .tag2{display:inline-block;font-size:.72rem;font-weight:700;color:#fff;background:var(--gold);border-radius:999px;padding:2px 12px}
+
+.end{margin-top:34px;padding:20px;border-radius:var(--r);background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow);text-align:center}
+.end p{margin:0 0 12px;font-size:.9rem;color:var(--muted)}
+
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.97);border-top:1px solid var(--line);padding:8px 12px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -4px 14px rgba(120,70,70,.06)}
+.dock-in{max-width:780px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.dock a{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:54px;border-radius:12px;text-decoration:none;color:var(--ink);font-size:.78rem;font-weight:700;line-height:1.2;gap:2px}
+.dock a svg{width:22px;height:22px;color:var(--rose)}
+.dock a.off{opacity:.3;pointer-events:none}
+.dock a.nx{background:var(--rose);color:#fff}
+.dock a.nx svg{color:#fff}
+.foot{margin-top:40px;text-align:center;font-size:.72rem;color:var(--muted)}
+.foot .orn{width:110px;margin-bottom:6px}
+.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:.85rem;opacity:0;transition:opacity .3s;pointer-events:none;z-index:40;max-width:90vw;text-align:center}
+.toast.on{opacity:1}
+:focus-visible{outline:3px solid #E5A9B8;outline-offset:2px}
+</style>
+</head>
+<body>
+<header class="bar"><div class="bar-in">
+ <a class="logo" href="#home"><b>Nail Academy du Marche</b><span>生徒さん専用 学習サイト</span></a>
+ <button class="sizebtn" id="sizeBtn" aria-pressed="false">文字を大きく</button>
+</div></header>
+<main class="wrap" id="app"></main>
+<nav class="dock" id="dock" hidden><div class="dock-in">
+ <a id="dPrev" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>前の章</a>
+ <a href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>目次</a>
+ <a id="dNext" class="nx" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>次の章</a>
+</div></nav>
+<div class="toast" id="toast"></div>
+<script>
+var DATA={"chapters": [{"no": 1, "id": "start", "icon": "home", "title": "スクールの紹介とこのサイトの使い方", "short": "最初に読む章です。学び方と先生の紹介があります。", "blocks": [{"t": "lead", "text": "Nail Academy du Marche（ネイル アカデミー ドゥ マルシェ）の生徒さん専用の学習サイトです。"}, {"t": "steps", "title": "このサイトの使い方は3つだけです", "items": [{"h": "上から順に読めばOKです", "d": "章は第1章から順に並んでいます。迷ったら次の章へ進みます。"}, {"h": "読み終えたらボタンを押します", "d": "章のいちばん下の「読みました」を押すと進み具合に印が付きます。"}, {"h": "わからないことは先生に聞けます", "d": "第8章から質問を送れます。"}]}, {"t": "profile", "name": "外崎 舞", "kana": "とのさき まい", "role": "代表講師", "items": ["TOKYO NAIL EXPO 2016 グランドチャンピオン", "日本ネイリスト協会（JNA）常任本部認定講師", "ネイルサロン衛生管理士", "ネイリスト歴26年・指導歴20年以上"]}, {"t": "quote", "lines": ["輝き方は人それぞれ", "あなたらしく輝いて欲しいのです"], "by": "Nail du Marche の想い"}, {"t": "p", "text": "スクールでは生徒さんの「ネイルが好き」という思いを大切にしています。楽しくわかりやすく学べる授業を目指しています。"}, {"t": "cards", "title": "スクールの特徴", "items": [{"h": "確実な指導による高い合格率", "d": "ネイリスト技能検定やジェルネイル検定などの合格を目指します。"}, {"h": "少人数制で学びやすい", "d": "少人数なので講師にいつでも質問できます。"}, {"h": "通いやすいから続けられる", "d": "生活に合わせて曜日や時間を選べます。"}, {"h": "安心のサポート体制", "d": "練習スペースの貸し出しや開業までのノウハウもお伝えします。"}, {"h": "信頼のJNA認定校", "d": "日本ネイリスト協会の認定校です（認定校番号 0510-1）。"}]}, {"t": "info", "rows": [["スクール", "Nail Academy du Marche"], ["併設サロン", "Nail du Marche"], ["場所", "宮城県仙台市青葉区（地下鉄 勾当台公園駅から徒歩約3分）"], ["運営", "株式会社パルフェ"]]}]}, {"no": 2, "id": "nail", "icon": "nail", "title": "爪のしくみ", "short": "爪の部分の名前と役わりを覚えます。", "blocks": [{"t": "lead", "text": "最初に爪の部分の名前を覚えます。検定の筆記試験の「爪の構造」にもつながります。"}, {"t": "fig", "key": "nail", "cap": "爪のしくみ（模式図）"}, {"t": "cards", "title": "部分の名前と役わり", "items": [{"h": "爪甲", "sub": "そうこう", "d": "ふつう「爪」と呼んでいる硬い部分です。"}, {"h": "爪母", "sub": "そうぼ", "d": "爪甲を作るところです。爪の根元にあります。"}, {"h": "爪床", "sub": "そうしょう", "d": "爪甲の下にある部分です。爪甲はこの上を滑って前へ押し出されます。"}, {"h": "爪半月", "sub": "そうはんげつ", "d": "爪の根元に乳白色に見える部分です。爪母にあたります。"}, {"h": "爪郭", "sub": "そうかく", "d": "爪甲を囲んでいる皮膚です。横の側爪郭と根元の後爪郭があります。"}, {"h": "爪下皮", "sub": "そうかひ", "d": "爪の先の下にある皮膚です。"}]}, {"t": "point", "title": "ここがポイント", "items": ["爪甲が透明に見えるのは爪床から水分が届くからです。", "爪甲が爪下皮のところまで来ると水分が届かず白っぽく見えます。", "爪甲を指に固定しているのは側爪郭とのつながりです。"]}, {"t": "todo", "title": "先生の説明が入ります", "items": ["授業で使っている手書きの図やメモをここに清書して入れます。", "写真を撮って送っていただければ文字に起こします。"]}, {"t": "src", "items": [{"name": "日本皮膚科学会 皮膚科Q&A「爪の構造を教えて下さい」", "url": "https://qa.dermatol.or.jp/qa38/q19.html"}]}]}, {"no": 3, "id": "eisei", "icon": "shield", "title": "衛生と消毒", "short": "お客様の安全を守る決まりを覚えます。", "blocks": [{"t": "lead", "text": "お客様に安心していただくための基本です。検定の筆記試験の「衛生と消毒」の範囲でもあります。"}, {"t": "steps", "title": "お客様ごとに必ずすること", "items": [{"h": "器具はお客様ごとに消毒したものを使います", "d": "皮膚に触れる器具は使ったらすぐに洗って消毒します。"}, {"h": "タオルなどの布はお客様ごとに取り替えます", "d": "使った布は洗剤で洗います。"}, {"h": "消毒したものと使ったものは分けてしまいます", "d": "それぞれの入れ物を用意しておきます。"}]}, {"t": "point", "title": "手指の消毒", "items": ["施術の前に自分の手指を消毒します。", "お客様の手指も施術の前に消毒します。", "目に見える汚れがあるときは流水と石けんで15秒以上洗います。"]}, {"t": "table", "title": "器具の消毒のしかた", "head": ["方法", "目安", "気をつけること"], "rows": [["消毒用エタノール", "76.9〜81.4vol%に10分以上浸すか拭きます", "消毒液はいつも新しいものを使います"], ["次亜塩素酸ナトリウム", "0.01〜0.1%に10分以上浸します", "金属の器具はさびやすいので長く浸しません"], ["紫外線消毒器", "85μW/cm²以上を20分以上当てます", "汚れを落としてから入れます"], ["煮沸", "沸騰してから2分以上煮ます", "熱で形が変わる樹脂もあります"], ["蒸気", "80℃を超えてから10分以上", "タオルを重ねすぎないようにします"]], "note": "どの方法でも消毒の前に器具をよく洗います。"}, {"t": "point", "title": "検定3級の実技でも見られます", "items": ["ウッドスティック・ピンセット・キューティクルニッパー・メタルプッシャーの4点をウェットステリライザーに入れておきます。", "衛生的に処理した用具と用材を使うことも決まりです。"]}, {"t": "src", "items": [{"name": "日本ネイリスト協会「ネイルサロンにおける衛生管理自主基準」", "url": "https://www.nail.or.jp/media/pdf/eisei/eiseikanri_jishukijun.pdf"}, {"name": "厚生労働省「ネイルサロンにおける衛生管理に関する指針」（平成22年9月15日）", "url": "https://www.city.shizuoka.lg.jp/documents/3215/000101315.pdf"}, {"name": "日本ネイリスト検定試験センター「2027年 冬期 ネイリスト技能検定試験 試験要項」", "url": "https://www.nail-kentei.or.jp/pdf/youkou_01.pdf"}]}]}, {"no": 4, "id": "salon", "icon": "chat", "title": "サロンワークの基本", "short": "接客とカウンセリングと施術の流れを学びます。", "blocks": [{"t": "quote", "lines": ["お客様のご希望のスタイルに近づけるよう", "カウンセリングを大切にしております"], "by": "外崎 舞"}, {"t": "lead", "text": "サロンワークはカウンセリングから始まります。施術の前後にも決まった確認があります。"}, {"t": "flow", "title": "施術の流れ", "items": [{"h": "お迎えとカウンセリング", "d": "ご希望のデザインや気になることをうかがいます。"}, {"h": "施術前の確認", "d": "下の「確かめること」を問診票などで確認します。"}, {"h": "手指の消毒", "d": "自分の手指とお客様の手指を消毒します。"}, {"h": "施術", "d": "お客様ごとに消毒した器具を使います。"}, {"h": "アフターケアのご説明", "d": "施術のあとのお手入れを十分に説明します。"}, {"h": "器具の洗浄と消毒", "d": "使った器具はすぐに洗って消毒します。"}], "note": "国の指針とJNAの自主基準に書かれた決まりを順に並べました。スクールの細かい手順は先生の内容に差し替えます。"}, {"t": "list", "title": "施術の前に確かめること", "items": ["感染症や皮膚の病気の治療中ではないか", "アレルギー体質ではないか", "飲んでいる薬はないか", "敏感肌ではないか", "かぶれたことはないか", "爪の病気やトラブルはないか"]}, {"t": "point", "title": "こんなときは施術を止めます", "items": ["施術中にお客様の体調が悪くなったときはすぐに施術を止めます。", "施術した部分に異常が出たときも同じです。", "必要なときは医師の診察をおすすめします。"]}, {"t": "todo", "title": "先生の接客のポイントが入ります", "items": ["お迎えの言葉やカウンセリングで聞くことを先生の言葉で入れます。", "問診票の見本もここに置けます。"]}, {"t": "src", "items": [{"name": "厚生労働省「ネイルサロンにおける衛生管理に関する指針」第7", "url": "https://www.city.shizuoka.lg.jp/documents/3215/000101315.pdf"}, {"name": "日本ネイリスト協会「ネイルサロンにおける衛生管理自主基準」第5条", "url": "https://www.nail.or.jp/media/pdf/eisei/eiseikanri_jishukijun.pdf"}, {"name": "ホットペッパービューティー 外崎 舞（スタッフ紹介）", "url": "https://beauty.hotpepper.jp/kr/slnH000320516/staff/W000380482/"}]}]}, {"no": 5, "id": "practice", "icon": "brush", "title": "技術の練習と練習の記録", "short": "ケア・カラー・ジェルの練習を記録します。", "blocks": [{"t": "lead", "text": "技術は練習した分だけ身に付きます。練習した日と内容をここに記録します。"}, {"t": "todo", "title": "先生の手順メモが入ります", "items": ["ネイルケアの手順", "カラーリングの手順", "ジェルネイルの手順"], "hint": "授業の手書きメモを写真で送っていただければ見やすく清書して入れます。"}, {"t": "tracker"}, {"t": "info", "title": "練習できる場所と時間", "rows": [["授業の時間帯", "10:00〜13:00／14:00〜17:00／18:00〜21:00"], ["マンツーマン", "曜日によって枠があります（予約制）"], ["自習スペース", "授業の前後は無料で使えます。モデルさんを連れて来ることもできます。"]], "note": "スクールの案内パンフレットに書かれている内容です。今の決まりは先生に確かめてください。"}]}, {"no": 6, "id": "quiz", "icon": "pencil", "title": "検定の筆記対策", "short": "試験の範囲を知って確認クイズを解きます。", "blocks": [{"t": "lead", "text": "ネイリスト技能検定の筆記試験はマークシートで答えます。まず範囲を知ってからクイズで確かめます。"}, {"t": "table", "title": "ネイリスト技能検定（JNEC）の筆記試験", "head": ["級", "時間", "主な範囲"], "rows": [["3級", "30分", "ネイルの歴史・衛生と消毒・爪の構造・爪の病気とトラブル・ネイルケアの手順など"], ["2級", "35分", "3級の範囲にリペアやチップ&ラップの手順・プロフェッショナリズムなどが加わります"]], "note": "合格は筆記が100点満点で80点以上です。実技は50点満点で38点以上です。"}, {"t": "point", "title": "受験のきまり", "items": ["3級は義務教育を終えていればだれでも受けられます。", "2級は3級に合格した方が受けられます。", "2つ以上の級を同時に受けることはできません。", "申し込みはインターネットからだけです。"]}, {"t": "quiz", "title": "確認クイズ（見本）", "qs": [{"q": "爪甲を作るところはどこですか？", "opts": ["爪床", "爪母", "爪下皮"], "a": 1, "exp": "爪甲は爪母で作られます。爪床の上を滑って前へ押し出されます。"}, {"q": "爪の根元に乳白色に見える部分は何ですか？", "opts": ["爪半月", "爪郭", "爪甲"], "a": 0, "exp": "爪半月は爪母にあたる部分です。"}, {"q": "消毒用エタノールに器具を浸すときは何分以上ですか？", "opts": ["2分以上", "5分以上", "10分以上"], "a": 2, "exp": "消毒用エタノールには10分以上浸します。2分以上は煮沸のときの目安です。"}, {"q": "次亜塩素酸ナトリウムで消毒するときに気をつけることは何ですか？", "opts": ["金属の器具がさびやすい", "タオルには使えない", "必ず温めて使う"], "a": 0, "exp": "金属の器具はさびやすいので長く浸しません。"}, {"q": "ネイリスト技能検定3級の筆記試験の合格点は100点満点で何点以上ですか？", "opts": ["60点以上", "70点以上", "80点以上"], "a": 2, "exp": "筆記試験は80点以上で合格です。"}]}, {"t": "todo", "title": "ここに外崎先生の問題が入ります", "items": ["先生が作った問題をこの形のクイズにして入れます。", "章ごと・級ごとに分けることもできます。"], "hint": "公式問題集はコピーやデジタル化が禁止されています。このサイトには先生が自分の言葉で作った問題だけを入れます。"}, {"t": "src", "items": [{"name": "日本ネイリスト検定試験センター「2027年 冬期 ネイリスト技能検定試験 試験要項」", "url": "https://www.nail-kentei.or.jp/pdf/youkou_01.pdf"}, {"name": "日本皮膚科学会 皮膚科Q&A「爪の構造を教えて下さい」", "url": "https://qa.dermatol.or.jp/qa38/q19.html"}, {"name": "日本ネイリスト協会「ネイルサロンにおける衛生管理自主基準」", "url": "https://www.nail.or.jp/media/pdf/eisei/eiseikanri_jishukijun.pdf"}]}]}, {"no": 7, "id": "career", "icon": "star", "title": "卒業後の働き方", "short": "資格を取ったあとの進み方を知ります。", "blocks": [{"t": "quote", "lines": ["資格を取って終わりにしない"], "by": "Nail Academy du Marche"}, {"t": "lead", "text": "卒業後の進み方は人それぞれです。自分に合った形を先生と一緒に考えます。"}, {"t": "cards", "title": "いろいろな進み方", "items": [{"h": "サロンで働く", "d": "サロンに就職してお客様の施術を重ねます。"}, {"h": "副業から始める", "d": "今のお仕事を続けながら少しずつ始めます。"}, {"h": "シェアサロンで様子を見る", "d": "自分のお店を持つ前に実践を積みます。"}, {"h": "自分のサロンを開く", "d": "自宅サロンや独立開業を目指します。"}, {"h": "講師を目指す", "d": "JNAの認定講師資格を目指すコースもあります。"}]}, {"t": "list", "title": "開業のサポートで学べること", "items": ["事業計画の立て方", "物件選びやオープンまでのスケジュール", "仕入れや管理", "メニューの作り方や宣伝のしかた", "スタッフ教育"]}, {"t": "course", "title": "サロンワークスタートアップ講座", "items": ["資格はあるけれどまだお客様に入ったことがない方の講座です", "全8回（1回3時間）・定員5名", "1〜3回 基礎の実技／4〜6回 実際のお客様に施術／7〜8回 開業の準備"], "url": "https://leafy-peony-5a9e2d.netlify.app/", "btn": "講座の案内を見る"}, {"t": "point", "title": "卒業後も続けられること", "items": ["コンテストに出る生徒さんを講師陣がバックアップします。", "各メーカーのセミナーもスクールで開いています。"]}, {"t": "src", "items": [{"name": "Nail du Marche 公式サイト・スクール案内パンフレット", "url": "https://www.naildumarche.jp/nailschool.html"}, {"name": "サロンワークスタートアップ講座の案内", "url": "https://leafy-peony-5a9e2d.netlify.app/"}]}]}, {"no": 8, "id": "faq", "icon": "question", "title": "よくある質問と先生への質問", "short": "困ったときはここを見ます。先生に質問も送れます。", "blocks": [{"t": "faq", "items": [{"q": "授業はどの時間帯ですか？", "a": "10時〜13時と14時〜17時と18時〜21時の3つです。曜日によってマンツーマンの枠もあります（予約制）。"}, {"q": "授業のほかに練習できますか？", "a": "自習スペースがあります。授業の前後は無料で使えます。"}, {"q": "ネイリスト技能検定の申し込みはどうしますか？", "a": "インターネットからだけ申し込めます。2つ以上の級を同時に受けることはできません。"}, {"q": "ジェルネイル検定はスクールで受けられますか？", "a": "JNA認定校の特典として認定校内で受験できる制度があります。くわしくは先生に聞いてください。"}, {"q": "ネイル用品はどこで買えますか？", "a": "スクールで生徒価格で買えます。"}]}, {"t": "todo", "title": "先生がよく聞かれる質問を足していきます", "items": ["生徒さんからよく来る質問と答えをここに増やせます。"]}, {"t": "ask"}, {"t": "src", "items": [{"name": "Nail du Marche 公式サイト（アクセス・スクール）", "url": "https://www.naildumarche.jp/access.html"}, {"name": "日本ネイリスト検定試験センター 試験要項", "url": "https://www.nail-kentei.or.jp/pdf/youkou_01.pdf"}]}]}], "meta": {"line_url": "https://lin.ee/VAvx5E1"}};
+/* 外崎さん 学習サイト（見本）の画面。DATA は build.py が差し込む。 */
+(function(){
+"use strict";
+var CH = DATA.chapters, META = DATA.meta;
+var KEY = "dumarche_learn_v1";
+
+/* ---- 保存（使えない環境でも画面は動く） ---- */
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; } }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+var S = load(); S.done = S.done || {}; S.logs = S.logs || []; S.quiz = S.quiz || {};
+
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); }
+function $(id){ return document.getElementById(id); }
+function toast(t){ var e=$("toast"); e.textContent=t; e.classList.add("on"); clearTimeout(toast._t); toast._t=setTimeout(function(){ e.classList.remove("on"); },1800); }
+
+/* ---- アイコン ---- */
+var IC = {
+ home:'<path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"/>',
+ nail:'<path d="M8 21V10a4 4 0 0 1 8 0v11"/><path d="M9.5 9.5a2.5 2.5 0 0 1 5 0V13h-5z"/><path d="M8 17h8"/>',
+ shield:'<path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/>',
+ chat:'<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
+ brush:'<path d="M14 4l6 6-8 8H6v-6z"/><path d="M11 7l6 6"/><path d="M6 18l-2 2"/>',
+ pencil:'<path d="M5 19h4L19 9l-4-4L5 15z"/><path d="M13 7l4 4"/><path d="M4 22h16"/>',
+ star:'<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6-5.3-3-5.3 3 1.2-6L3.4 9.3l6-.7z"/>',
+ question:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14"/><circle cx="12" cy="17.2" r=".6" fill="currentColor"/>',
+ check:'<path d="M5 12.5l4.5 4.5L19 7"/>',
+ edit:'<path d="M4 20h4L19 9l-4-4L4 16z"/>',
+ line:'<path d="M4 5h16v11H9l-5 4z"/>'
+};
+function icon(k){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(IC[k]||"")+'</svg>'; }
+var ORN = '<svg class="orn" viewBox="0 0 150 22" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M2 11h50"/><path d="M98 11h50"/><path d="M75 3c-6 0-9 4-9 8s3 8 9 8 9-4 9-8-3-8-9-8z"/><path d="M58 11c4-5 8-5 8 0M92 11c-4-5-8-5-8 0"/><circle cx="75" cy="11" r="2" fill="currentColor"/></svg>';
+
+/* ---- 爪の図（模式図） ---- */
+function figNail(){
+ var top = '<svg viewBox="0 0 360 330" role="img" aria-label="上から見た爪の図">'+
+ '<path d="M70 330V98Q70 30 130 30Q190 30 190 98V330" fill="#F7D9D3" stroke="#D9A89E" stroke-width="2"/>'+
+ '<path d="M86 232V82Q86 50 130 48Q174 50 174 82V232Q130 244 86 232Z" fill="#FCEEF0" stroke="#C98C99" stroke-width="2"/>'+
+ '<path d="M90 86Q130 62 170 86" fill="none" stroke="#E7C9A7" stroke-width="3"/>'+
+ '<path d="M104 235Q130 200 156 235Q130 242 104 235Z" fill="#FFFFFF" stroke="#E8CFD5" stroke-width="1.5"/>'+
+ '<path d="M80 238Q130 260 180 238" fill="none" stroke="#B97E86" stroke-width="3" stroke-linecap="round"/>'+
+ '<path d="M80 92V234M180 92V234" stroke="#C99A93" stroke-width="2" stroke-dasharray="4 4"/>'+
+ lab(150,120,214,104,"爪甲")+lab(181,165,214,162,"側爪郭")+lab(140,228,214,214,"爪半月")+lab(168,248,214,266,"後爪郭")+
+ '</svg>';
+ var side = '<svg viewBox="0 0 360 290" role="img" aria-label="横から見た爪の図">'+
+ '<path d="M10 232V100Q70 94 114 112V122H246Q318 122 322 174Q316 232 236 232Z" fill="#F7D9D3" stroke="#D9A89E" stroke-width="2"/>'+
+ '<path d="M112 123H282Q292 124 296 130H112Z" fill="#EDB0BA"/>'+
+ '<ellipse cx="80" cy="127" rx="32" ry="8" fill="#D27F92"/>'+
+ '<path d="M58 111H288Q326 111 336 128L329 133Q318 121 288 121H58Z" fill="#FCEEF0" stroke="#C98C99" stroke-width="2"/>'+
+ '<path d="M10 121V100Q70 94 114 112V121Z" fill="#F7D9D3"/>'+
+ '<path d="M10 100Q70 94 114 112" fill="none" stroke="#B97E86" stroke-width="2.5"/>'+
+ '<path d="M289 131Q300 133 306 143" fill="none" stroke="#B97E86" stroke-width="5" stroke-linecap="round"/>'+
+ lab(70,100,40,58,"後爪郭")+lab(200,116,186,58,"爪甲")+lab(80,128,40,262,"爪母")+lab(200,127,186,262,"爪床")+lab(300,137,306,262,"爪下皮")+
+ '</svg>';
+ function lab(x1,y1,x2,y2,t){
+  var up = y2 < y1, ty = up ? y2-6 : y2+20;
+  var anchor = "middle";
+  if(x2 > 205 && Math.abs(y2-y1) < 30){ anchor="start"; ty=y2+6; }
+  return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="#8E4259" stroke-width="1.4"/>'+
+   '<circle cx="'+x1+'" cy="'+y1+'" r="3.5" fill="#8E4259"/>'+
+   '<text x="'+(anchor==="start"?x2+6:x2)+'" y="'+ty+'" text-anchor="'+anchor+'" font-size="19" font-weight="700" fill="#3A2B2D" font-family="Hiragino Kaku Gothic ProN,BIZ UDPGothic,Yu Gothic,Meiryo,sans-serif">'+t+'</text>';
+ }
+ return '<div class="fig"><figure>'+top+'<figcaption>上から見たところ</figcaption></figure><figure>'+side+'<figcaption>横から切って見たところ</figcaption></figure></div>';
+}
+
+/* ---- 部品 ---- */
+function h3(t){ return '<h2 class="h3"><span class="mk"></span>'+esc(t)+'</h2>'; }
+var R = {
+ lead:function(b){ return '<p class="lead">'+esc(b.text)+'</p>'; },
+ p:function(b){ return '<p class="p">'+esc(b.text)+'</p>'; },
+ steps:function(b){ return '<div class="blk card">'+(b.title?h3(b.title):"")+'<ol class="steps">'+b.items.map(function(i){ return '<li><div><b>'+esc(i.h)+'</b><span>'+esc(i.d)+'</span></div></li>'; }).join("")+'</ol></div>'; },
+ flow:function(b){ return '<div class="blk card">'+h3(b.title)+'<ol class="flow">'+b.items.map(function(i){ return '<li><div><b>'+esc(i.h)+'</b><span>'+esc(i.d)+'</span></div></li>'; }).join("")+'</ol>'+(b.note?'<p class="note">'+esc(b.note)+'</p>':"")+'</div>'; },
+ cards:function(b){ return '<div class="blk">'+(b.title?h3(b.title):"")+'<div class="cards">'+b.items.map(function(i){ return '<div class="mini"><b>'+esc(i.h)+'</b>'+(i.sub?'<em>'+esc(i.sub)+'</em>':"")+'<p>'+esc(i.d)+'</p></div>'; }).join("")+'</div></div>'; },
+ list:function(b){ return '<div class="blk card">'+h3(b.title)+'<ul class="list">'+b.items.map(function(i){ return '<li><span></span><span>'+esc(i)+'</span></li>'; }).join("")+'</ul></div>'; },
+ point:function(b){ return '<div class="blk point">'+h3(b.title)+'<ul>'+b.items.map(function(i){ return '<li>'+esc(i)+'</li>'; }).join("")+'</ul></div>'; },
+ quote:function(b){ return '<div class="quote">'+ORN+'<q>'+b.lines.map(function(l){ return '<span>'+esc(l)+'</span>'; }).join("")+'</q><small>'+esc(b.by)+'</small></div>'; },
+ table:function(b){
+  return '<div class="blk card">'+h3(b.title)+'<table class="tbl"><thead><tr>'+b.head.map(function(x){ return '<th>'+esc(x)+'</th>'; }).join("")+'</tr></thead><tbody>'+
+   b.rows.map(function(r){ return '<tr>'+r.map(function(c,k){ return '<td data-l="'+esc(b.head[k])+'">'+esc(c)+'</td>'; }).join("")+'</tr>'; }).join("")+'</tbody></table>'+(b.note?'<p class="note">'+esc(b.note)+'</p>':"")+'</div>';
+ },
+ info:function(b){ return '<div class="blk card">'+(b.title?h3(b.title):"")+'<dl class="info">'+b.rows.map(function(r){ return '<div><dt>'+esc(r[0])+'</dt><dd>'+esc(r[1])+'</dd></div>'; }).join("")+'</dl>'+(b.note?'<p class="note">'+esc(b.note)+'</p>':"")+'</div>'; },
+ profile:function(b){ return '<div class="blk card"><div class="prof"><div class="mono">M.T</div><div><div class="rl">'+esc(b.role)+'</div><div class="nm">'+esc(b.name)+'<small>'+esc(b.kana)+'</small></div></div><ul>'+b.items.map(function(i){ return '<li>'+esc(i)+'</li>'; }).join("")+'</ul></div></div>'; },
+ fig:function(b){ return '<div class="blk">'+figNail()+'<p class="note" style="text-align:center">'+esc(b.cap)+'（日本皮膚科学会の説明をもとに作った図です）</p></div>'; },
+ todo:function(b){ return '<div class="blk todo"><span class="tag">'+icon("edit").replace('<svg','<svg width="14" height="14"')+'外崎先生の内容が入る場所</span>'+h3(b.title)+'<ul>'+b.items.map(function(i){ return '<li>'+esc(i)+'</li>'; }).join("")+'</ul>'+(b.hint?'<p class="hint">'+esc(b.hint)+'</p>':"")+'</div>'; },
+ course:function(b){ return '<div class="blk card course"><span class="tag2">講座のご案内</span>'+h3(b.title)+'<ul class="list">'+b.items.map(function(i){ return '<li><span></span><span>'+esc(i)+'</span></li>'; }).join("")+'</ul><a class="btn btn-sub" style="margin-top:14px" href="'+esc(b.url)+'" target="_blank" rel="noopener">'+esc(b.btn)+'</a></div>'; },
+ src:function(b){ return '<details class="src"><summary>この章の出典（'+b.items.length+'件）</summary><ul>'+b.items.map(function(i){ return '<li><a href="'+esc(i.url)+'" target="_blank" rel="noopener">'+esc(i.name)+'</a></li>'; }).join("")+'</ul></details>'; },
+ faq:function(b){ return '<div class="blk faq">'+b.items.map(function(i){ return '<details><summary>'+esc(i.q)+'</summary><div class="a">'+esc(i.a)+'</div></details>'; }).join("")+'</div>'; },
+ quiz:function(b,ci){
+  var h = '<div class="blk">'+h3(b.title)+'<div class="qz" data-quiz="'+ci+'">';
+  b.qs.forEach(function(q,qi){
+   h += '<div class="q" data-q="'+qi+'"><div class="qn">QUESTION '+(qi+1)+'</div><div class="qt">'+esc(q.q)+'</div>'+
+    q.opts.map(function(o,oi){ return '<button class="opt" data-o="'+oi+'"><span class="k">'+"ABC".charAt(oi)+'</span><span>'+esc(o)+'</span></button>'; }).join("")+
+    '<div class="exp"></div></div>';
+  });
+  return h + '<div class="score"><div>あなたの点数</div><b></b><button class="btn btn-sub" data-retry style="margin-top:12px">もう一度解く</button></div></div></div>';
+ },
+ tracker:function(){
+  return '<div class="blk card trk">'+h3("練習の記録")+
+  '<p class="note" style="margin-top:0">これからの予定も入れられます。終わったら右の丸を押します。</p>'+
+  '<label for="tDate">日にち</label><input type="date" id="tDate">'+
+  '<label>練習したこと（いくつでも）</label><div class="chips" id="tKind">'+["ケア","カラー","ジェル","アート","検定の練習","その他"].map(function(k){ return '<button type="button" class="chip" aria-pressed="false">'+k+'</button>'; }).join("")+'</div>'+
+  '<label for="tMin">時間</label><select id="tMin"><option value="30">30分</option><option value="60" selected>1時間</option><option value="90">1時間30分</option><option value="120">2時間</option><option value="180">3時間</option></select>'+
+  '<label for="tMemo">メモ（できたこと・次に気をつけること）</label><textarea id="tMemo" placeholder="例：ファイルの角度を先生に直してもらった"></textarea>'+
+  '<button class="btn btn-main" id="tAdd" style="margin-top:16px">記録する</button>'+
+  '<div class="sum"><div><b id="sWeek">0</b><span>7日間の練習</span></div><div><b id="sDone">0</b><span>できた回数</span></div><div><b id="sPlan">0</b><span>予定</span></div></div>'+
+  '<ul class="logs" id="tList"></ul><p class="note">記録はこの端末の中だけに残ります。先生には送られません。</p></div>';
+ },
+ ask:function(){
+  return '<div class="blk card ask">'+h3("先生に質問する")+
+  '<p class="note" style="margin-top:0">書いた質問をコピーしてLINEを開きます。LINEに貼り付けて送ってください。</p>'+
+  '<label for="aCh" style="display:block;font-size:.85rem;font-weight:700;margin:12px 0 6px">どの章の質問ですか</label><select id="aCh">'+CH.map(function(c){ return '<option>第'+c.no+'章 '+esc(c.title)+'</option>'; }).join("")+'<option>そのほか</option></select>'+
+  '<label for="aTx" style="display:block;font-size:.85rem;font-weight:700;margin:12px 0 6px">質問</label><textarea id="aTx" placeholder="例：消毒液はどのくらいで取り替えればいいですか"></textarea>'+
+  '<button class="btn btn-main" id="aGo" style="margin-top:14px">'+icon("line").replace('<svg','<svg width="22" height="22"')+'コピーしてLINEを開く</button>'+
+  '<p class="note">見本ではスクールの公式LINEにつながります。生徒さん用の窓口に変えられます。</p></div>';
+ }
+};
+
+/* ---- 画面 ---- */
+function nextUnread(){ for(var i=0;i<CH.length;i++){ if(!S.done[CH[i].id]) return CH[i]; } return null; }
+function doneCount(){ return CH.filter(function(c){ return S.done[c.id]; }).length; }
+
+function home(){
+ var n = nextUnread(), dc = doneCount();
+ var h = '<div class="sample"><b>見本</b>　外崎先生にお見せするための見本です。スクールの公開情報と公的な資料をもとに作っています。</div>'+
+ '<section class="hero">'+ORN+'<h1>Nail Academy<br>du Marche</h1><div class="kana">ネイル アカデミー ドゥ マルシェ</div><span class="sub">生徒さん専用 学習サイト</span>'+
+ '<p>授業で習ったことを家で読み返すためのサイトです。スマホでいつでも開けます。</p></section>'+
+ '<div class="guide"><div class="gi">'+icon("check").replace('<svg','<svg width="28" height="28"')+'</div><div><b>上から順に読めばOKです</b><span>迷ったら下の「続きから読む」を押してください。</span></div></div>'+
+ '<div class="prog"><div class="prog-top"><b>あなたの進み具合</b><span>'+dc+' / '+CH.length+' 章</span></div><div class="meter"><i style="width:'+(dc/CH.length*100)+'%"></i></div>'+
+ (n ? '<a class="btn btn-main" href="#'+n.id+'">'+(dc? "続きから読む（第"+n.no+"章）" : "第1章から読みはじめる")+'</a>' : '<a class="btn btn-main" href="#'+CH[0].id+'">全部読み終えました。もう一度読む</a>')+'</div>'+
+ '<h2 class="sec-h">目次</h2><ol class="toc">'+CH.map(function(c){
+  var d = S.done[c.id], nx = n && n.id===c.id;
+  return '<li class="'+(d?"done":"")+(nx?" next":"")+'"><a href="#'+c.id+'"><span class="ic">'+icon(d?"check":c.icon)+'</span><span><span class="no">CHAPTER '+c.no+'<span class="st">'+(d?"読んだ":(nx?"次はここ":"まだ"))+'</span></span><span class="tt">'+esc(c.title)+'</span><span class="sh">'+esc(c.short)+'</span></span></a></li>';
+ }).join("")+'</ol>'+
+ '<footer class="foot">'+ORN+'<div>Nail Academy du Marche</div><div>宮城県仙台市青葉区</div></footer>';
+ $("app").innerHTML = h; $("dock").hidden = true;
+}
+
+function chapter(c){
+ var i = CH.indexOf(c), prev = CH[i-1], next = CH[i+1];
+ var h = '<div class="crumb"><a href="#home">目次</a> ／ 第'+c.no+'章</div>'+
+ '<header class="ch-head"><span class="ic">'+icon(c.icon)+'</span><span class="no">CHAPTER '+c.no+'</span><h1>'+esc(c.title)+'</h1><p>'+esc(c.short)+'</p>'+
+ '<div class="dots">'+CH.map(function(x){ return '<a href="#'+x.id+'" class="'+(x.id===c.id?"c":(S.done[x.id]?"d":""))+'" aria-label="第'+x.no+'章">'+x.no+'</a>'; }).join("")+'</div></header>';
+ c.blocks.forEach(function(b){ h += (R[b.t] ? R[b.t](b, i) : ""); });
+ h += '<div class="end"><p>'+(S.done[c.id]?"この章は読み終えています。":"最後まで読んだら押してください。")+'</p>'+
+  '<button class="btn btn-main" id="doneBtn">'+(next? "読みました・次の章へ" : "読みました・目次へ")+'</button>'+
+  '<a class="btn btn-sub" href="#home">目次へ戻る</a></div>';
+ $("app").innerHTML = h;
+ $("dock").hidden = false;
+ var dp=$("dPrev"), dn=$("dNext");
+ dp.href = prev? "#"+prev.id : "#home"; dp.classList.toggle("off", !prev);
+ dn.href = next? "#"+next.id : "#home"; dn.classList.toggle("off", !next);
+ $("doneBtn").onclick = function(){ S.done[c.id]=1; save(); toast("第"+c.no+"章に印を付けました"); location.hash = next? next.id : "home"; };
+ wireQuiz(); wireTracker(); wireAsk();
+}
+
+function wireQuiz(){
+ document.querySelectorAll("[data-quiz]").forEach(function(box){
+  var ci = +box.getAttribute("data-quiz"), qs = CH[ci].blocks.filter(function(b){ return b.t==="quiz"; })[0].qs;
+  var answered = 0, right = 0;
+  function finish(){ var s=box.querySelector(".score"); s.querySelector("b").textContent = right+" / "+qs.length+" 問"; s.classList.add("show"); }
+  box.querySelectorAll(".q").forEach(function(qel){
+   var qi = +qel.getAttribute("data-q"), q = qs[qi];
+   qel.querySelectorAll(".opt").forEach(function(btn){
+    btn.onclick = function(){
+     var oi = +btn.getAttribute("data-o"); var ok = oi===q.a;
+     qel.querySelectorAll(".opt").forEach(function(b2){ b2.disabled=true; if(+b2.getAttribute("data-o")===q.a) b2.classList.add("ok"); });
+     if(!ok) btn.classList.add("ng");
+     qel.querySelector(".exp").innerHTML = '<b>'+(ok?"正解です！":"もう一歩です")+'</b>'+esc(q.exp);
+     qel.classList.add("answered"); answered++; if(ok) right++;
+     if(answered===qs.length) finish();
+    };
+   });
+  });
+  box.querySelector("[data-retry]").onclick = function(){ route(); var nb=document.querySelector("[data-quiz]"); if(nb) window.scrollTo(0, nb.getBoundingClientRect().top + window.scrollY - 90); };
+ });
+}
+
+function ymd(d){ return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2); }
+function wireTracker(){
+ var list = $("tList"); if(!list) return;
+ $("tDate").value = ymd(new Date());
+ var chips = $("tKind").querySelectorAll(".chip");
+ chips.forEach(function(c){ c.onclick=function(){ c.setAttribute("aria-pressed", c.getAttribute("aria-pressed")==="true"?"false":"true"); }; });
+ function draw(){
+  var logs = S.logs.slice().sort(function(a,b){ return a.d<b.d?1:-1; });
+  var today = ymd(new Date()), wk = ymd(new Date(Date.now()-6*864e5));
+  var weekMin = 0, done = 0, plan = 0;
+  logs.forEach(function(l){ if(l.ok){ done++; if(l.d>=wk && l.d<=today) weekMin += +l.m; } else if(l.d>=today) plan++; });
+  $("sWeek").textContent = weekMin>=60 ? (Math.round(weekMin/6)/10)+"時間" : weekMin+"分";
+  $("sDone").textContent = done; $("sPlan").textContent = plan;
+  if(!logs.length){ list.innerHTML = '<li class="empty" style="display:block">まだ記録はありません。上から1回分を入れてみてください。</li>'; return; }
+  list.innerHTML = logs.map(function(l){
+   var dt = l.d.split("-");
+   return '<li><div class="dt">'+(+dt[1])+'/'+(+dt[2])+'<small>'+l.m+'分</small></div><div class="tx"><b>'+esc(l.k.join("・")||"練習")+'</b>'+(l.memo?'<span>'+esc(l.memo)+'</span>':"")+'</div>'+
+    '<button class="chk" data-id="'+l.id+'" aria-pressed="'+(l.ok?"true":"false")+'" aria-label="できた">'+icon("check").replace('<svg','<svg width="22" height="22"')+'</button>'+
+    '<button class="del" data-del="'+l.id+'">この記録を消す</button></li>';
+  }).join("");
+  list.querySelectorAll(".chk").forEach(function(b){ b.onclick=function(){ var l=S.logs.filter(function(x){ return x.id==b.getAttribute("data-id"); })[0]; l.ok=!l.ok; save(); draw(); }; });
+  list.querySelectorAll(".del").forEach(function(b){ b.onclick=function(){ if(!confirm("この記録を消しますか？")) return; S.logs=S.logs.filter(function(x){ return x.id!=b.getAttribute("data-del"); }); save(); draw(); }; });
+ }
+ $("tAdd").onclick = function(){
+  var k = []; chips.forEach(function(c){ if(c.getAttribute("aria-pressed")==="true") k.push(c.textContent); });
+  var d = $("tDate").value || ymd(new Date());
+  S.logs.push({id:Date.now(), d:d, k:k, m:$("tMin").value, memo:$("tMemo").value.trim(), ok: d<=ymd(new Date())});
+  save(); $("tMemo").value=""; chips.forEach(function(c){ c.setAttribute("aria-pressed","false"); });
+  toast("記録しました"); draw();
+ };
+ draw();
+}
+
+function wireAsk(){
+ var go = $("aGo"); if(!go) return;
+ go.onclick = function(){
+  var t = $("aTx").value.trim();
+  if(!t){ toast("質問を書いてから押してください"); $("aTx").focus(); return; }
+  var msg = "【質問】"+$("aCh").value+"\n"+t;
+  function open(){ window.open(META.line_url, "_blank", "noopener"); }
+  try{ navigator.clipboard.writeText(msg).then(function(){ toast("コピーしました。LINEに貼り付けてください"); open(); }, open); }catch(e){ open(); }
+ };
+}
+
+function route(){
+ var id = (location.hash||"").replace("#","");
+ var c = CH.filter(function(x){ return x.id===id; })[0];
+ if(c) chapter(c); else home();
+ window.scrollTo(0,0);
+}
+
+/* ---- 文字の大きさ ---- */
+var sb = $("sizeBtn");
+function applySize(){ var l = S.size==="l"; document.documentElement.setAttribute("data-size", l?"l":"m"); sb.setAttribute("aria-pressed", l?"true":"false"); sb.textContent = l? "文字をふつうに" : "文字を大きく"; }
+sb.onclick = function(){ S.size = S.size==="l" ? "m" : "l"; save(); applySize(); };
+applySize();
+
+window.addEventListener("hashchange", route);
+route();
+})();
+
+</script>
+</body>
+</html>
